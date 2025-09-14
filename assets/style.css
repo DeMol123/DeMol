@@ -1,0 +1,80 @@
+body {
+  background-color: #1b1b1b;
+  color: #f5f5f5;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #ff9900;
+}
+
+button {
+  background-color: #ff9900;
+  color: #1b1b1b;
+  border: none;
+  padding: 8px 16px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #2a2a2a;
+  color: #f5f5f5;
+}
+
+#grid {
+  display: flex;
+  flex-direction: column;   /* Nieuwe poging onder de vorige */
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;      /* Centraal uitlijnen van elke poging */
+}
+
+.row {
+  display: flex;            /* Letters van één poging naast elkaar */
+  gap: 5px;
+  justify-content: center;  /* Centraal uitlijnen binnen de rij */
+  width: 100%;
+}
+
+.letter {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  border-radius: 6px;
+}
+
+.correct {
+  background-color: #ff9900; /* Oranje = juiste letter op juiste plaats */
+  color: #1b1b1b;
+}
+
+.present {
+  background-color: #ffd633; /* Geel = juiste letter verkeerde plaats */
+  color: #1b1b1b;
+}
+
+.absent {
+  background-color: #333;    /* Donker = niet aanwezig */
+}
+
+#overview {
+  margin-top: 30px;
+  border-top: 1px solid #555;
+  padding-top: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}

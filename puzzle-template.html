@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Mollenjacht Puzzel</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <h1>🔎 Mollenjacht Puzzel</h1>
+  <p><strong>Instructies:</strong> Raad het geheime woord.  
+    🟠 = juiste letter op juiste plek, 🟡 = juiste letter op verkeerde plek, ⚫ = letter niet in het woord.</p>
+  
+  <h2 id="guesser"></h2>
+  <p id="hint"></p>
+  <p id="length"></p>
+  <p id="remaining"></p>
+
+  <input type="text" id="guessInput" placeholder="Typ je gok">
+  <button id="submitGuess">Indienen</button>
+
+  <div id="grid"></div>
+  <div id="result"></div>
+
+  <div id="overview">
+    <h2>Ontdekte Boodschappen</h2>
+    <ul id="overviewList"></ul>
+  </div>
+
+  <script src="assets/puzzle.js"></script>
+  <script>
+    createPuzzle({
+      id: "puzzle1",          // uniek ID voor opslag
+      guesser: "Sophie",
+      hint: "Een spionage-gadget",
+      word: "LASER",
+      length: 5,
+      maxGuesses: 6,
+      message: "Ontmoet mij om middernacht in het oude pakhuis."
+    });
+  </script>
+</body>
+</html>

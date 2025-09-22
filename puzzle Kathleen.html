@@ -2,40 +2,85 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Mollenjacht Puzzel</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <title>Proficiat!</title>
+  <style>
+    /* Matrix-achtig achtergrond-effect */
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: #0f0;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    .message {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #0f0;
+      animation: fadeIn 2s ease-in-out;
+      line-height: 1.5;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 2em;
+      color: #00ff66;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+  </style>
 </head>
 <body>
-  <h1>🔎 Mollenjacht Puzzel</h1>
-  <p><strong>Instructies:</strong> Raad het geheime woord.  
-    🟠 = juiste letter op juiste plek, 🟡 = juiste letter op verkeerde plek, ⚫ = letter niet in het woord.</p>
-  
-  <h2 id="guesser"></h2>
-  <p id="hint"></p>
-  <p id="length"></p>
-  <p id="remaining"></p>
-
-  <input type="text" id="guessInput" placeholder="Typ je gok">
-  <button id="submitGuess">Indienen</button>
-
-  <div id="grid"></div>
-  <div id="result"></div>
-
-  <div id="overview">
-    <h2>Ontdekte Boodschappen</h2>
-    <ul id="overviewList"></ul>
+  <canvas id="matrix"></canvas>
+  <div class="message">
+    <h1>Proficiat!</h1>
+    <p>
+      Jullie hebben samen alle tips ontdekt. Trek jullie sportieve kledij aan en vergeet je handdoek en water niet. (Reservekledij is ook een optie.) Bereid je voor op een avontuurlijke, sportieve woensdag vol proeven. We vliegen er samen in! Kijken jullie ook naar het weerbericht? Wie weet krijgen we een buitje of misschien straalt de zoete zon! Neem dus een regenjas, truitje of zonnecrème mee en laat niets ons avontuur stoppen.
+    </p>
+    <p><strong>WAAR?</strong> LERAARSKAMER<br>
+       <strong>WANNEER?</strong> WOENSDAG 24 SEPTEMBER 8u50-12u30</p>
+    <p>Tot dan en… SUCCES!</p>
   </div>
 
-  <script src="assets/puzzle.js"></script>
   <script>
-    createPuzzle({
-      id: "puzzle Kathleen",          // uniek ID voor opslag
-      guesser: "Kathleen",
-      hint: "Varkens zijn er dol op",
-      word: "MODDER",
-      length: 6,
-      maxGuesses: 6,
-      message: "Vuil"
+    // Matrix-regen effect
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    const letters = Array(256).join(1).split('');
+    function draw() {
+      ctx.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#0F0';
+      letters.map((y_pos, index) => {
+        const text = String.fromCharCode(3e4 + Math.random() * 33);
+        const x_pos = index * 10;
+        ctx.fillText(text, x_pos, y_pos);
+        letters[index] = y_pos > canvas.height + Math.random() * 1e4 ? 0 : y_pos + 10;
+      });
+    }
+    setInterval(draw, 33);
+    window.addEventListener('resize', () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
     });
   </script>
 </body>
